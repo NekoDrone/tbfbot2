@@ -5,12 +5,13 @@
     "axios": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.4.4",
     "typescript": "^5.1.6"
   },
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "functions-framework --target=collectNewCaseData",
+    "start": "functions-framework --target=postJsonToFirestore",
     "prestart": "npm run build",
     "gcp-build": "npm run build"
   }

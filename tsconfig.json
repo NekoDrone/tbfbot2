@@ -6,6 +6,6 @@
       "strict": true,
       "outDir": "dist"
     },
-    "include": ["volunteer/src/**/*"],
+    "include": ["*", "index.ts"],
     "exclude": ["node_modules"]
   }
