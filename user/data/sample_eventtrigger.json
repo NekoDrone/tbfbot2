@@ -1,0 +1,109 @@
+{
+    "name": "projects/tbfcms2/databases/(default)/documents/tbfcms2-newcase-data/iNrZdngjABIVN4kB5RUS",
+    "fields": {
+      "formID": {
+        "stringValue": "232028672145049"
+      },
+      "casedetails": {
+        "stringValue": "test"
+      },
+      "dateofbirth": {
+        "mapValue": {
+          "fields": {
+            "month": {
+              "stringValue": "07"
+            },
+            "year": {
+              "stringValue": "1999"
+            },
+            "day": {
+              "stringValue": "09"
+            }
+          }
+        }
+      },
+      "specialrequest": {
+        "stringValue": "test"
+      },
+      "gender": {
+        "arrayValue": {
+          "values": [
+            {
+              "stringValue": "Male-to-Female/Trans Woman/Transfeminine"
+            },
+            {
+              "stringValue": "Non-binary"
+            },
+            {
+              "stringValue": "Genderfluid"
+            },
+            {
+              "stringValue": "Questioning"
+            },
+            {
+              "stringValue": "Others (Please share them with your befriender)"
+            }
+          ]
+        }
+      },
+      "ip": {
+        "stringValue": "155.69.182.21"
+      },
+      "phonenumber": {
+        "stringValue": "+6586131802"
+      },
+      "sexualorientation": {
+        "stringValue": "Queer"
+      },
+      "submission_id": {
+        "stringValue": "5668820881222606857"
+      },
+      "mailinglistbool": {
+        "stringValue": "Yes"
+      },
+      "telegramhandle": {
+        "stringValue": "@SylfrTan"
+      },
+      "name": {
+        "mapValue": {
+          "fields": {
+            "last": {
+              "stringValue": "Tan"
+            },
+            "first": {
+              "stringValue": "Sylfr"
+            }
+          }
+        }
+      },
+      "groupsessionbool": {
+        "stringValue": "Yes"
+      },
+      "pronouns": {
+        "arrayValue": {
+          "values": [
+            {
+              "stringValue": "She/her"
+            },
+            {
+              "stringValue": "They/them"
+            },
+            {
+              "stringValue": "Others (Please share them with your befriender)"
+            }
+          ]
+        }
+      },
+      "email": {
+        "stringValue": "sylfr.serenity.tan@gmail.com"
+      }
+    },
+    "createTime": {
+      "seconds": "1691072891",
+      "nanos": 380495000
+    },
+    "updateTime": {
+      "seconds": "1691072891",
+      "nanos": 380495000
+    }
+  }

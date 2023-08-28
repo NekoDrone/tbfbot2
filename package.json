@@ -2,7 +2,9 @@
   "dependencies": {
     "@google-cloud/firestore": "^6.7.0",
     "@google-cloud/functions-framework": "^3.3.0",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "firestore-parser": "^0.9.0",
+    "protobufjs": "^7.2.4"
   },
   "devDependencies": {
     "@types/node": "^20.4.4",

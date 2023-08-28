@@ -1,8 +1,7 @@
 import * as functions from "@google-cloud/functions-framework";
 import * as firestore from "@google-cloud/firestore";
+const axios = require('axios');
 
-const axios = require('axios')
-const projectID = 'tbfcms2';
 const TELEGRAM_URL = process.env.TELEGRAM_URL ?? "";
 const telegramFullURL = TELEGRAM_URL + (process.env.TELEGRAM_BOT_KEY ?? "") + "/sendMessage";
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -62,8 +61,5 @@ functions.http('postJsonToFirestore', (req: functions.Request, res: functions.Re
       err
       });
     });
-});
 
-function buildNewCaseMessage(jsonData: any) {
-  
-}
+});

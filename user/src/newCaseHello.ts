@@ -4,9 +4,12 @@ import axios from 'axios';
 
 const PROJ_ID = process.env.PROJ_ID;
 const COLLECTION_NAME: string = process.env.COLLECTION_NAME ?? 'undefined';
-const firestoreCollection = new firestore.Firestore({// put up here because of how functions are instantiated. improves response times.
+const firestoreCollection = new firestore.Firestore({ // put up here because of how functions are instantiated. improves response times.
     projectId: PROJ_ID
 }).collection(COLLECTION_NAME);
+const tempFirestoreCollection = new firestore.Firestore({
+    projectId: PROJ_ID
+}).collection("cms2-temp-db");
 const TELEGRAM_URL = process.env.TELEGRAM_URL ?? "";
 const telegramSendURL = TELEGRAM_URL + (process.env.TELEGRAM_BOT_KEY ?? "") + "/sendMessage";
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -22,15 +25,15 @@ functions.http('newCaseHello', async (req: functions.Request, res: functions.Res
     }
     else {
         sendNewRegistrationMessage(teleUserId, teleUser);
+        addUserWithIDToTempDB(teleUser, teleUserId);
         res.sendStatus(200);
     }
 
 })
 
 async function userExistsinFirestore(teleUser: string) {
-
     const caseData = await firestoreCollection.where('telegramhandle', '==', teleUser).get();
-    return caseData.empty;
+    return !caseData.empty;
 }
 
 function sendAlreadyRegisteredMessage(userId: number) {
@@ -55,4 +58,9 @@ function sendMessageToUserId(message: string, userId: number) {
     .catch(function (error: any) {
       console.error(error);
     });
+}
+
+function addUserWithIDToTempDB(username: string, userID: number) {
+    const tempData = { username: username, userid: userID };
+    tempFirestoreCollection.add(tempData);
 }

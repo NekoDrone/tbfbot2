@@ -10,8 +10,10 @@ use Psr\Http\Message\ServerRequestInterface;
 
 FunctionsFramework::http('collectNewCaseData', 'collectNewCaseData');
 
+$targetURL = getenv('TARGET_URL');
+$curl_session = curl_init($targetURL);
+
 function collectNewCaseData(ServerRequestInterface $request) {
-    $targetURL = getenv('TARGET_URL');
     $body = $request->getBody()->getContents();
     $jsonData = convertUrlDataToJson($body);
     $response = sendAsJsonToTarget($jsonData, $targetURL);
@@ -24,7 +26,6 @@ function convertUrlDataToJson($urlEncodedData) {
 }
 
 function sendAsJsonToTarget($jsonData, $targetURL) {
-    $curl_session = curl_init($targetURL);
     curl_setopt($curl_session, CURLOPT_POST, true);
     curl_setopt($curl_session, CURLOPT_POSTFIELDS, $jsonData);
     curl_setopt($curl_session, CURLOPT_RETURNTRANSFER, true);
