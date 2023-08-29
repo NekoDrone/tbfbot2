@@ -1,7 +1,7 @@
 import axios from 'axios';
-import * as firestoreParser from 'firestore-parser';
 import * as functions from '@google-cloud/functions-framework';
 import protobuf from 'protobufjs';
+const firestoreParser: any = require('firestore-parser') as any;
 
 const jiraURL = process.env.JIRA_URL ?? 'undefined';
 const jiraKey = process.env.JIRA_KEY ?? 'undefined';
@@ -29,7 +29,7 @@ function decodeEventDataToJson(eventData: any) {
     return firestoreParser(decodedData.value.fields);
 }
 
-function constructJiraIssue(caseData): Object {
+function constructJiraIssue(caseData: any): Object {
     var issueDescription = `Timestamp: ${new Date().toLocaleString()}` + "\n";
     issueDescription += `Name: ${caseData.name.first} ${caseData.name.last}` + "\n";
     issueDescription += `Pronouns: ${arrayToString(caseData.pronouns, ", ")}` + "\n";
@@ -73,7 +73,7 @@ function arrayToString(arr: Array<string>, seperator: string): string {
     return res;
 }
 
-function findAgeFromBirthday(dateOfBirth): number {
+function findAgeFromBirthday(dateOfBirth: any): number {
     const datenow: number = Date.now();
     const dob: number = new Date(`${dateOfBirth.month}/${dateOfBirth.day}/${dateOfBirth.year}`).getTime();
     return Math.floor((datenow - dob)/31556952000);
@@ -96,6 +96,7 @@ function sendToJira(issue: Object){
         console.log(response);
     })
     .catch(function (error) {
-        console.log("Something went wrong");
+        console.log("Something went wrong.");
+        console.log(error);
     })
 }

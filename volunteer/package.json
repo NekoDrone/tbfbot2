@@ -1,0 +1,24 @@
+{
+  "name": "volunteer",
+  "version": "1.0.0",
+  "description": "TBF Volunteer Bot",
+  "main": "index.js",
+  "dependencies": {
+    "faye-websocket": "^0.11.4",
+    "firebase": "^2.4.2",
+    "firebase-token-generator": "^2.0.0",
+    "firestore": "^1.1.6",
+    "http-parser-js": "^0.5.8",
+    "lodash": "^3.10.1",
+    "safe-buffer": "^5.2.1",
+    "tsc": "^2.0.4",
+    "typescript": "^5.1.6",
+    "websocket-driver": "^0.7.4",
+    "websocket-extensions": "^0.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
