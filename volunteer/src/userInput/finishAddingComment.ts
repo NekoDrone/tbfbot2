@@ -1,0 +1,2 @@
+function finishAddingComment(issueID: string) {
+}

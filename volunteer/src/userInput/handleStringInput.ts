@@ -1,0 +1,2 @@
+function handleStringInput(inputString: string) {
+}

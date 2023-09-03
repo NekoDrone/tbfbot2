@@ -1,0 +1,2 @@
+function printCaseComments(issueID: string) {
+}

@@ -1,0 +1,2 @@
+function feedbackStringInput(inputString: string) {
+}

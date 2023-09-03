@@ -1,0 +1,2 @@
+function escalateCase(issueID: string) {
+}

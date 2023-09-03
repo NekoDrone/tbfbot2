@@ -1,0 +1,2 @@
+function printCaseDetails(issueID: string) {
+}

@@ -1,0 +1,2 @@
+function closeCase(issueID: string) {
+}
