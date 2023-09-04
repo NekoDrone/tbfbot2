@@ -5,11 +5,11 @@ const jiraKey = process.env.JIRA_KEY ?? 'undefined';
 const jiraEmail = process.env.JIRA_EMAIL ?? 'undefined';
 const jiraCredentials = Buffer.from(jiraEmail + ":" + jiraKey, 'base64')
 
-export default async function generateCaseListPromise(jiraLabel: string): Promise<string[]> {
+export default async function generateCaseList(jiraLabel: string): Promise<string[]> {
     const issues = await retrieveCaseListFromJira(jiraLabel);
     var caseLabels: string[] = [];
     for (const issue of issues) {
-        caseLabels.push(issue.someProperty);
+        caseLabels.push(issue.someProperty); //TODO: THIS WHOLE THING
     }
     return caseLabels;
 }
