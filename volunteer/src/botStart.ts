@@ -1,5 +1,5 @@
 import * as firestore from "@google-cloud/firestore"
-import getDocFromFirestore from "./firestore/getDocFromFirestore"
+import getDocFromFirestore from "./firestore/get/getDocFromFirestore"
 import sendMessageToUserId from "./telegram/sendMessageToUserId"
 import generateCaseList from "./jira/generateCaseList"
 import editMessageWithInlineButtons from "./telegram/editMessageWithInlineButtons"

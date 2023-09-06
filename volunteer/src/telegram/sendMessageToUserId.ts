@@ -1,6 +1,8 @@
 import axios from "axios";
 import { TELEGRAM_URL } from "..";
 import { TELEGRAM_BOT_KEY } from "..";
+import { firestoreCollection } from "..";
+import updateSessionMessageId from "../firestore/docupdates/updateSessionMessageId";
 
 const telegramSendURL = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/sendMessage";
 
@@ -12,7 +14,7 @@ export default function sendMessageToUserId(message: string, userId: number) {
     axios.post(telegramSendURL, options)
     .then((response) => {
       const messageId = response.data.message_id;
-      //need to store the message id into the current active document as sessionMessageId -> see diagram
+      updateSessionMessageId(userId, messageId);
     })
     .catch(function (error: any) {
       console.error(error);

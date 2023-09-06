@@ -1,4 +1,4 @@
-import { firestoreCollection } from "..";
+import { firestoreCollection } from "../..";
 
 
 export default async function getDocFromFirestore(userId: number): Promise<AuthUser> {
