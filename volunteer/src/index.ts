@@ -7,6 +7,7 @@ import logOut from "./caseMenu/logOut.ts";
 import updateUserSelectedCase from "./firestore/docupdates/updateUserSelectedCase.ts";
 import printCaseDetailsTo from "./caseMenu/printCaseDetailsTo.ts";
 import printCaseCommentsTo from "./caseMenu/printCaseCommentsTo.ts";
+import startAddingComment from "./telegram/userInput/startAddingComment.ts";
 
 const server = http.createServer();
 server.listen()
@@ -25,13 +26,16 @@ async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> 
                 printCaseCommentsTo(user)
             }
             else if(queryData == type.Query.AddComment) {
-                //TODO: AddComment
+                startAddingComment(user)
             }
             else if(queryData == type.Query.ChangeCaseStatus) {
                 //TODO: ChangeCaseStatus
             }
             else if(queryData == type.Query.Back) {
                 botStart(user);
+            }
+            else if(queryData == type.Query.Cancel) {
+                //TODO: case management menu (see below)
             }
             else if(queryData == type.Query.LogOut) {
                 logOut(user) //TODO:

@@ -10,5 +10,5 @@ export default async function updateSessionMessageId(userId: number, state: bool
     const data = {
         sessionMessageId: state
     }
-    doc.update(data);
+    doc.update(data); //TODO: refactor to use updateAuthUserDoc()
 }

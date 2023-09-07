@@ -9,5 +9,5 @@ export default async function updateUserSelectedCase(userId: number, caseKey: st
     const data = {
         selectedCase: caseKey
     }
-    doc.update(data);
+    doc.update(data); //TODO: refactor to use updateAuthUserDoc()
 }

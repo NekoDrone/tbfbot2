@@ -7,8 +7,9 @@ const telegramMethodUrl = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/editMessageText";
 /**
  * Edits the current conversation message with the provided new message and buttons.
  * @param {AuthUser} userDoc - An object of type AuthUser that contains both the chat ID and the messsage ID to be edited.
- * @param {string} newMessage - The new message as a string
  * @param {string[]} buttonLabels - The new message's buttons as a string array. The callback query data for the button will be the same as the text. Both of which are elements of the provided string array.
+ * @param {string} newMessage - The new message as a string
+ * 
  */
 export default function editMessageWithInlineButtons(userDoc: AuthUser, buttonLabels: string[], newMessage: string): void{
     const buttons = buildKeyboardButtons(buttonLabels);

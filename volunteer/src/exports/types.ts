@@ -81,5 +81,7 @@ export enum Query {
     AddComment = "AddComment",
     ChangeCaseStatus = "ChangeCaseStatus",
     LogOut = "LogOut",
-    Back = "Back"
+    Back = "Back",
+    Cancel = "Cancel",
+    Edit = "Edit"
 }
