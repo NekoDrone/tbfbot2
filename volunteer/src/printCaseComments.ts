@@ -1,2 +1,2 @@
-function printCaseComments(issueID: string) {
+export default function printCaseComments(issueID: string) {
 }

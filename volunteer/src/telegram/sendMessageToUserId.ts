@@ -1,7 +1,7 @@
 import axios from "axios";
-import { TELEGRAM_URL } from "..";
-import { TELEGRAM_BOT_KEY } from "..";
-import { firestoreCollection } from "..";
+import { TELEGRAM_URL } from "../exports/consts";
+import { TELEGRAM_BOT_KEY } from "../exports/consts";
+import { firestoreCollection } from "../exports/consts";
 import updateSessionMessageId from "../firestore/docupdates/updateSessionMessageId";
 
 const telegramSendURL = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/sendMessage";

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { JiraIssue } from "../exports/types.ts"
 
 const jiraUrl = process.env.JIRA_URL ?? 'undefined';
 const jiraKey = process.env.JIRA_KEY ?? 'undefined';
@@ -32,8 +33,4 @@ async function retrieveCaseListFromJira(jiraLabel: string): Promise<JiraIssue[]>
         jiraIssues = response.data.issues
         return jiraIssues
     })
-}
-
-type JiraIssue = {
-    someProperty: string
 }
