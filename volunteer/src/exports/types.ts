@@ -21,7 +21,41 @@ export type CallbackQuery = {
 }
 
 export type JiraIssue = {
-    someProperty: string
+    key: string,
+    fields: JiraIssueFields
+}
+
+export type JiraIssueFields = {
+    labels: string[],
+    status: JiraFieldsStatus,
+    description: JiraFieldsDesc,
+    comment: JiraFieldsComment,
+
+}
+
+export type JiraFieldsStatus = {
+    name: string
+}
+
+export type JiraFieldsDesc = {
+    content: JiraDescContent[],
+}
+
+export type JiraDescContent = {
+    content: JiraContentInner[] //what the fuck jira. (to access this, you need to do issue.fields.description.content[0].content[0])
+}
+
+export type JiraContentInner = {
+    text: string
+}
+
+export type JiraFieldsComment = {
+    total: number,
+    comments: JiraCommentInner[]
+}
+
+export type JiraCommentInner = {
+    body: JiraFieldsDesc //why do you KEEP DOING THIS
 }
 
 export type AuthUser = {
