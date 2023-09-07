@@ -1,3 +1,5 @@
+
+//telegram
 export type TeleUpdate = {
     update_id: string,
     message: Message,
@@ -15,11 +17,13 @@ export type User = {
 }
 
 export type CallbackQuery = {
+    id: string,
     from: User,
     data: string,
     message: Message
 }
 
+//jira
 export type JiraIssue = {
     key: string,
     fields: JiraIssueFields
@@ -46,7 +50,8 @@ export type JiraDescContent = {
 }
 
 export type JiraContentInner = {
-    text: string
+    text: string,
+    type: string
 }
 
 export type JiraFieldsComment = {
@@ -56,8 +61,10 @@ export type JiraFieldsComment = {
 
 export type JiraCommentInner = {
     body: JiraFieldsDesc //why do you KEEP DOING THIS
+    created: string
 }
 
+//local
 export type AuthUser = {
     name: string,
     telegramId: number,
@@ -73,5 +80,6 @@ export enum Query {
     PrintComments = "PrintComments",
     AddComment = "AddComment",
     ChangeCaseStatus = "ChangeCaseStatus",
-    LogOut = "LogOut"
+    LogOut = "LogOut",
+    Back = "Back"
 }

@@ -2,49 +2,56 @@ import * as http from "http";
 import * as type from "./exports/types.ts";
 import botStart from "./botStart.ts"
 import generateCaseList from "./jira/generateCaseList.ts";
-import authUserExistsInFirestore from "./firestore/firestoreUserExists.ts";
+import authUserExists from "./firestore/authUserExists.ts";
 import getJiraIssue from "./jira/getJiraIssue.ts";
-import printCaseDetails from "./printCaseDetails.ts";
-import printCaseComments from "./printCaseComments.ts";
+import printCaseDetailsTo from "./printCaseDetailsTo.ts";
+import printCaseCommentsTo from "./printCaseCommentsTo.ts";
 import getDocFromFirestore from "./firestore/get/getDocFromFirestore.ts";
 import logOut from "./logOut.ts";
+import updateUserSelectedCase from "./firestore/docupdates/updateUserSelectedCase.ts";
 
 const server = http.createServer();
 server.listen()
 
 async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> {
     const userId = req.callback_query.from.id ?? req.message.from.id;
-    if(await authUserExistsInFirestore(userId)) {
-        const userDoc = await getDocFromFirestore(userId);
+    if(await authUserExists(userId)) {
+        const user = await getDocFromFirestore(userId);
         if(updateIsQuery(req)) {
             const queryData = req.callback_query.data as type.Query;
 
             if(queryData == type.Query.PrintDetails) {
-                printCaseDetails(userDoc.selectedCase);
+                printCaseDetailsTo(user)
             }
             else if(queryData == type.Query.PrintComments) {
-                printCaseComments(userDoc.selectedCase)
+                printCaseCommentsTo(user)
             }
             else if(queryData == type.Query.AddComment) {
-                //do AddComment
+                //TODO: AddComment
             }
             else if(queryData == type.Query.ChangeCaseStatus) {
-                //do ChangeCaseStatus
+                //TODO: ChangeCaseStatus
+            }
+            else if(queryData == type.Query.Back) {
+                botStart(user);
             }
             else if(queryData == type.Query.LogOut) {
-                logOut()
+                logOut(user) //TODO:
             }
             else {
                 const issueId = queryData as string
                 if(issueId.startsWith("TY-")) {
-                    //TODO: update userDoc with selected issue.
+                    updateUserSelectedCase(user.telegramId, issueId)
                 }
             }
         }
         else if(updateIsMessage(req)) {
             const messageText = req.message.text;
             if(messageText == "/start") {
-                botStart(userId);
+                botStart(user);
+            }
+            else {
+                //handle text input
             }
         }
         else {
@@ -52,7 +59,7 @@ async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> 
         }
     }
     else {
-
+        //reject query
     }
     
 }

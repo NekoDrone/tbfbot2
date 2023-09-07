@@ -1,19 +1,24 @@
 import axios from "axios";
-import { TELEGRAM_URL } from "..";
-import { TELEGRAM_BOT_KEY } from "..";
+import { TELEGRAM_BOT_KEY, TELEGRAM_URL } from "../exports/consts";
+import { AuthUser } from "../exports/types";
 
-const telegramEditUrl = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/editMessageText";
+const telegramMethodUrl = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/editMessageText";
 
-export default function editMessageWithInlineButtons(userId: number, messageId: number, buttonLabels: string[]): void{
+/**
+ * Edits the current conversation message with the provided new message and buttons.
+ * @param {AuthUser} userDoc - An object of type AuthUser that contains both the chat ID and the messsage ID to be edited.
+ * @param {string} newMessage - The new message as a string
+ * @param {string[]} buttonLabels - The new message's buttons as a string array. The callback query data for the button will be the same as the text. Both of which are elements of the provided string array.
+ */
+export default function editMessageWithInlineButtons(userDoc: AuthUser, buttonLabels: string[], newMessage: string): void{
     const buttons = buildKeyboardButtons(buttonLabels);
-    const messageText = "Hello! Please choose a case from the list below:"
     const options = {
-        chat_id: userId,
-        message_id: messageId,
-        text: messageText,
+        chat_id: userDoc.telegramId,
+        message_id: userDoc.sessionMessageId,
+        text: newMessage,
         reply_markup: buttons,
     }
-    axios.post(telegramEditUrl, options)
+    axios.post(telegramMethodUrl, options)
     .then(function (response: any) {
       console.log(response);
     })

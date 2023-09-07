@@ -1,16 +1,18 @@
 import axios from "axios"
 import { JiraIssue } from "../exports/types.ts"
+import { JIRA_URL, jiraCredentials } from "../exports/consts.ts";
 
-const jiraUrl = process.env.JIRA_URL ?? 'undefined';
-const jiraKey = process.env.JIRA_KEY ?? 'undefined';
-const jiraEmail = process.env.JIRA_EMAIL ?? 'undefined';
-const jiraCredentials = Buffer.from(jiraEmail + ":" + jiraKey, 'base64')
+/**
+ * Calls the Jira API to find the cases associated with a given label on Jira.
+ * @param {string} jiraLabel - The label of the user.
+ * @returns A promise containing a string array of the keys of the cases.
+ */
 
 export default async function generateCaseList(jiraLabel: string): Promise<string[]> {
     const issues = await retrieveCaseListFromJira(jiraLabel);
     var caseLabels: string[] = [];
     for (const issue of issues) {
-        caseLabels.push(issue.someProperty); //TODO: THIS WHOLE THING
+        caseLabels.push(issue.key);
     }
     return caseLabels;
 }
@@ -21,16 +23,20 @@ async function retrieveCaseListFromJira(jiraLabel: string): Promise<JiraIssue[]>
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     };
-    var jiraIssues: Array<JiraIssue> = new Array<JiraIssue>
-    return await axios({
+    const jiraIssues: JiraIssue[] = await axios({
         method: "GET",
-        url: jiraUrl + "/search",
+        url: JIRA_URL + "/search",
         headers: header,
         params: {
             jql: `status = "Assigned Cases" and labels = ${jiraLabel}`
         }
-    }).then((response) => {
-        jiraIssues = response.data.issues
-        return jiraIssues
     })
+    return Promise.resolve(jiraIssues)
+}
+
+function generateLabelsFromArray(issuesArray: JiraIssue[]) {
+    var caseLabels: string[] = [];
+    for (const issue of issuesArray) {
+        caseLabels.push(issue.key)
+    }
 }
