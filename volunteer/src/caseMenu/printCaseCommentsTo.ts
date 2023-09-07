@@ -1,6 +1,7 @@
-import { AuthUser, JiraCommentInner } from "./exports/types";
-import getJiraIssue from "./jira/getJiraIssue";
-import editMessageWithInlineButtons from "./telegram/editMessageWithInlineButtons";
+import { AuthUser, JiraCommentInner } from "../exports/types";
+import getJiraIssue from "../jira/getJiraIssue";
+import editMessageWithInlineButtons from "../telegram/editMessageWithInlineButtons";
+
 
 /**
  * Sends the case comments of the specified issue to the telegram bot.

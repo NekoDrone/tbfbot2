@@ -1,14 +1,12 @@
 import * as http from "http";
 import * as type from "./exports/types.ts";
 import botStart from "./botStart.ts"
-import generateCaseList from "./jira/generateCaseList.ts";
 import authUserExists from "./firestore/authUserExists.ts";
-import getJiraIssue from "./jira/getJiraIssue.ts";
-import printCaseDetailsTo from "./printCaseDetailsTo.ts";
-import printCaseCommentsTo from "./printCaseCommentsTo.ts";
 import getDocFromFirestore from "./firestore/get/getDocFromFirestore.ts";
-import logOut from "./logOut.ts";
+import logOut from "./caseMenu/logOut.ts";
 import updateUserSelectedCase from "./firestore/docupdates/updateUserSelectedCase.ts";
+import printCaseDetailsTo from "./caseMenu/printCaseDetailsTo.ts";
+import printCaseCommentsTo from "./caseMenu/printCaseCommentsTo.ts";
 
 const server = http.createServer();
 server.listen()
@@ -42,6 +40,7 @@ async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> 
                 const issueId = queryData as string
                 if(issueId.startsWith("TY-")) {
                     updateUserSelectedCase(user.telegramId, issueId)
+                    //TODO: case management menu
                 }
             }
         }
