@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-        <mxGraphModel dx="1335" dy="1533" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="851" dy="1377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -403,9 +403,12 @@
                 <mxCell id="EKIsGKkMMV5qIhtIenaD-133" value="for future syl because my brain isn't working now:&lt;br&gt;- user starts the bot with /start. This changes the 'active' field on Firestore to true.&lt;br&gt;- this triggeres the generateCaseList() function and retrieves the issues list from Jira (see Insomnia for more info on how to parse this)&lt;br&gt;- server then generates the required inline keyboard buttons for the user&lt;br&gt;- when the user presses the keyboard button, they send a callback query with the case issue ID as the CallbackQuery.&lt;br&gt;- Then you keep that issue ID in the 'selectedCase' field on Firestore.&lt;br&gt;- generate five buttons. These all have specific callback queries so you can just route it accordingly in code (switch cases?)&lt;br&gt;- The only exceptions are when you need to read user input. There are two such cases.&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;--- The first of such cases is the Add Comment callback query. This will need to then set expectingUserInput to true when the callback occurs, and then the request handler can route it to an input string handler and send it back to the user for confirmation.&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;--- The second case is escalation, but this will also just expect more CallbackQuery objects and will end in the input string handler component.&lt;br&gt;- When the Log Out callback is called, edit the message to clear any responses, and reset the document to base state. (Experiment with a timeout function?)&lt;br&gt;&lt;br&gt;REMINDER: FOR EACH CALLBACK QUERY SENT, MUST ANSWER USING 'answerCallbackQuery' IF NOT SHIT GETS WEIRD" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="2670" y="-613" width="390" height="413" as="geometry"/>
                 </mxCell>
-                <mxCell id="EKIsGKkMMV5qIhtIenaD-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="1" source="EKIsGKkMMV5qIhtIenaD-137" edge="1">
+                <mxCell id="EKIsGKkMMV5qIhtIenaD-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;endFill=1;startArrow=none;startFill=0;" parent="1" source="EKIsGKkMMV5qIhtIenaD-137" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="3620" y="-230" as="targetPoint"/>
+                        <mxPoint x="3430" y="-40" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="3620" y="-40"/>
+                        </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="EKIsGKkMMV5qIhtIenaD-137" value="Cancel" style="shape=tape;whiteSpace=wrap;html=1;size=0.2;" parent="1" vertex="1">
