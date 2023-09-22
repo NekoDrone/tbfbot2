@@ -84,4 +84,5 @@ export enum Query {
   Cancel = "Cancel",
   Edit = "Edit",
   Confirm = "Confirm",
+  Info = "Info",
 }

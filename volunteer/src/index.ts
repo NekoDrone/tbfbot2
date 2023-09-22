@@ -14,6 +14,8 @@ import finishAddingComment from "./telegram/userInput/finishAddingComment";
 import answerCallbackQuery from "./telegram/answerCallbackQuery";
 import clearUserInput from "./telegram/userInput/clearUserInput";
 import startCaseMenu from "./caseMenu/startCaseMenu";
+import sendMessageToUserId from "./telegram/sendMessageToUserId";
+import botInfo from "./caseMenu/botInfo";
 
 const server = http.createServer();
 server.listen();
@@ -40,12 +42,14 @@ async function requestHandler(
       } else if (queryData == type.Query.Cancel) {
         startCaseMenu(user);
       } else if (queryData == type.Query.LogOut) {
-        logOut(user); //TODO:
+        logOut(user);
       } else if (queryData == type.Query.Edit) {
         clearUserInput(user);
         startAddingComment(user);
       } else if (queryData == type.Query.Confirm) {
         finishAddingComment(user);
+      } else if (queryData == type.Query.Info) {
+        botInfo(user);
       } else {
         const issueId = queryData as string;
         if (issueId.startsWith("TY-")) {
@@ -62,11 +66,12 @@ async function requestHandler(
         handleStringInput(messageText, user);
         feedbackCommentToUser(messageText, user);
       }
-    } else {
-      //what to do if neither query or message?
     }
   } else {
-    //reject query
+    sendMessageToUserId(
+      "You are not authorised. If you are a Befriender, please approach @SylfrTan or any other committee member for help.",
+      userId
+    );
   }
 }
 

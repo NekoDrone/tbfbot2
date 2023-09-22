@@ -10,6 +10,7 @@ export default function startCaseMenu(userDoc: AuthUser) {
     type.Query.AddComment,
     type.Query.ChangeCaseStatus,
     type.Query.LogOut,
+    type.Query.Info,
   ];
   editMessageWithInlineButtons(userDoc, buttons, messageText);
 }
