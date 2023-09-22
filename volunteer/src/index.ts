@@ -16,6 +16,9 @@ import clearUserInput from "./telegram/userInput/clearUserInput";
 import startCaseMenu from "./caseMenu/startCaseMenu";
 import sendMessageToUserId from "./telegram/sendMessageToUserId";
 import botInfo from "./caseMenu/botInfo";
+import startChangingCaseStatus from "./caseMenu/caseStatus/startChangingCaseStatus";
+import closeCase from "./caseMenu/caseStatus/closeCase";
+import escalateCase from "./caseMenu/caseStatus/escalateCase";
 
 const server = http.createServer();
 server.listen();
@@ -36,7 +39,7 @@ async function requestHandler(
       } else if (queryData == type.Query.AddComment) {
         startAddingComment(user);
       } else if (queryData == type.Query.ChangeCaseStatus) {
-        //TODO: ChangeCaseStatus
+        startChangingCaseStatus(user);
       } else if (queryData == type.Query.Back) {
         botStart(user);
       } else if (queryData == type.Query.Cancel) {
@@ -50,6 +53,10 @@ async function requestHandler(
         finishAddingComment(user);
       } else if (queryData == type.Query.Info) {
         botInfo(user);
+      } else if (queryData == type.Query.EscalateCase) {
+        escalateCase(user);
+      } else if (queryData == type.Query.CloseCase) {
+        closeCase(user);
       } else {
         const issueId = queryData as string;
         if (issueId.startsWith("TY-")) {

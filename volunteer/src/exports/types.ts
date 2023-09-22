@@ -62,6 +62,15 @@ export type JiraCommentInner = {
   created: string;
 };
 
+export enum JiraStatusId {
+  EscalateCase = 51,
+  CloseCase = 61,
+}
+
+export type JiraIssueTransition = {
+  id: number;
+};
+
 //local
 export type AuthUser = {
   name: string;
@@ -85,4 +94,6 @@ export enum Query {
   Edit = "Edit",
   Confirm = "Confirm",
   Info = "Info",
+  EscalateCase = "Escalate Case",
+  CloseCase = "Close Case",
 }
