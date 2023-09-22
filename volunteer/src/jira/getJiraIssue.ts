@@ -8,16 +8,18 @@ import { JiraIssue } from "../exports/types";
  * @returns A promise containing a JiraIssue object.
  */
 
-export default async function getJiraIssue(issueKey: string): Promise<JiraIssue> {
-    const header = {
-        'Authorization': "Basic " + jiraCredentials,
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    };
-    const issue: JiraIssue = await axios({
-        method: "GET",
-        url: JIRA_URL + `/${issueKey}`,
-        headers: header
-    })
-    return Promise.resolve(issue)
+export default async function getJiraIssue(
+  issueKey: string
+): Promise<JiraIssue> {
+  const header = {
+    Authorization: "Basic " + jiraCredentials,
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+  const issue: JiraIssue = await axios({
+    method: "GET",
+    url: JIRA_URL + `/${issueKey}`,
+    headers: header,
+  });
+  return Promise.resolve(issue);
 }

@@ -2,14 +2,15 @@ import { AuthUser } from "../exports/types";
 import getJiraIssue from "../jira/getJiraIssue";
 import editMessageWithInlineButtons from "../telegram/editMessageWithInlineButtons";
 
-
 /**
  * Sends the case details of the specified issue to the telegram bot.
- * @param userDoc - An object of type AuthUser that contains the state of the conversation. 
+ * @param userDoc - An object of type AuthUser that contains the state of the conversation.
  */
-export default async function printCaseDetailsTo(userDoc: AuthUser): Promise<void> {
-    const jiraIssue = await getJiraIssue(userDoc.selectedCase);
-    const buttons = ["Back"]
-    const issueDesc = jiraIssue.fields.description.content[0].content[0].text
-    editMessageWithInlineButtons(userDoc, buttons, issueDesc)
+export default async function printCaseDetailsTo(
+  userDoc: AuthUser
+): Promise<void> {
+  const jiraIssue = await getJiraIssue(userDoc.selectedCase);
+  const buttons = ["Back"];
+  const issueDesc = jiraIssue.fields.description.content[0].content[0].text;
+  editMessageWithInlineButtons(userDoc, buttons, issueDesc);
 }

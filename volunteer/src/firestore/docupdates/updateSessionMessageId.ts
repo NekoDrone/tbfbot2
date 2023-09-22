@@ -5,10 +5,15 @@ import { firestoreCollection } from "../../exports/consts";
  * @param {number} userId - The Telegram user ID in numerical form.
  * @param {number} messageId The Telegram message ID to write to the user's entry in the database.
  */
-export default async function updateSessionMessageId(userId: number, messageId: number): Promise<void> {
-    const doc = (await firestoreCollection.where('telegramid', '==', userId).get()).docs[0].ref;
-    const data = {
-        sessionMessageId: messageId
-    }
-    doc.update(data); //TODO: refactor to use updateAuthUserDoc()
+export default async function updateSessionMessageId(
+  userId: number,
+  messageId: number
+): Promise<void> {
+  const doc = (
+    await firestoreCollection.where("telegramid", "==", userId).get()
+  ).docs[0].ref;
+  const data = {
+    sessionMessageId: messageId,
+  };
+  doc.update(data);
 }
