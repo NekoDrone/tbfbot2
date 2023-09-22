@@ -21,7 +21,7 @@ import closeCase from "./caseMenu/caseStatus/closeCase";
 import escalateCase from "./caseMenu/caseStatus/escalateCase";
 
 const server = http.createServer();
-server.listen();
+server.listen(); //TODO: Express and routing
 
 async function requestHandler(
   req: type.TeleUpdate,
