@@ -5,7 +5,7 @@ export default function handleStringInput(
   inputString: string,
   userDoc: AuthUser
 ) {
-  const newDoc = userDoc;
-  newDoc.inputString = inputString;
-  updateAuthUserDoc(userDoc.telegramId, newDoc);
+  const docUpdate = userDoc;
+  docUpdate.inputString = inputString;
+  updateAuthUserDoc(userDoc.telegramId, docUpdate);
 }

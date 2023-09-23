@@ -6,12 +6,7 @@ import { AuthUser } from "../../exports/types";
  * @param {number} userId - The Telegram user ID in numerical form.
  * @param {AuthUser} userDoc - The updated document entry.
  */
-export default async function updateAuthUserDoc(
-  userId: number,
-  userDoc: AuthUser
-): Promise<void> {
-  const doc = (
-    await firestoreCollection.where("telegramid", "==", userId).get()
-  ).docs[0].ref;
-  doc.update(userDoc);
+export default async function updateAuthUserDoc(userId: number, userDoc: AuthUser): Promise<void> {
+    const doc = (await firestoreCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    doc.update(userDoc);
 }

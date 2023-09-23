@@ -23,18 +23,13 @@ export default function editMessageWithInlineButtons(
     text: newMessage,
     reply_markup: buttons,
   };
-  axios
-    .post(telegramMethodUrl, options)
-    .then(function (response: any) {
-      console.log(response);
-    })
-    .catch(function (error: any) {
-      console.error(error);
-    });
+  axios.post(telegramMethodUrl, options).catch(function (error) {
+    console.error(error);
+  });
 }
 
 function buildKeyboardButtons(buttonLabels: string[]): InlineKeyboardbutton[] {
-  var keyboardButtons = new Array<InlineKeyboardbutton>();
+  const keyboardButtons = new Array<InlineKeyboardbutton>();
   for (const label of buttonLabels) {
     const button: InlineKeyboardbutton = { text: label, callback_data: label };
     keyboardButtons.push(button);

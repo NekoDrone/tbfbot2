@@ -7,30 +7,30 @@ import { AuthUser } from "../exports/types";
  * @param userDoc - An object of type AuthUser that contains both the comment, and the case label it should apply to.
  */
 export async function addCommentToCase(userDoc: AuthUser): Promise<void> {
-  const header = {
-    Authorization: "Basic " + jiraCredentials,
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  };
-  const newComment = {
-    content: [
-      {
+    const header = {
+        Authorization: "Basic " + jiraCredentials,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+    };
+    const newComment = {
         content: [
-          {
-            text: `${userDoc.inputString}`,
-            type: "text",
-          },
+            {
+                content: [
+                    {
+                        text: `${userDoc.inputString}`,
+                        type: "text",
+                    },
+                ],
+                type: "paragraph",
+            },
         ],
-        type: "paragraph",
-      },
-    ],
-    type: "doc",
-    version: 1,
-  };
-  axios({
-    method: "POST",
-    url: JIRA_URL + `/${userDoc.selectedCase}/comment`,
-    headers: header,
-    data: newComment,
-  });
+        type: "doc",
+        version: 1,
+    };
+    axios({
+        method: "POST",
+        url: JIRA_URL + `/${userDoc.selectedCase}/comment`,
+        headers: header,
+        data: newComment,
+    });
 }

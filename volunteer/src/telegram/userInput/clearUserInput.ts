@@ -6,8 +6,8 @@ import updateAuthUserDoc from "../../firestore/docupdates/updateAuthUserDoc";
  * @param userDoc - An object of type AuthUser that contains both the state of the current conversation.
  */
 export default function clearUserInput(userDoc: AuthUser) {
-  const newDoc = userDoc;
-  newDoc.expectingStringInput = false;
-  newDoc.inputString = "";
-  updateAuthUserDoc(newDoc.telegramId, newDoc);
+  const docUpdate = userDoc;
+  docUpdate.expectingStringInput = false;
+  docUpdate.inputString = "";
+  updateAuthUserDoc(docUpdate.telegramId, docUpdate);
 }

@@ -7,7 +7,7 @@ export default function startAddingComment(userDoc: AuthUser) {
   const buttons = [type.Query.Cancel];
   const message = "Please type in your comment and send it.";
   editMessageWithInlineButtons(userDoc, buttons, message);
-  var docUpdate = userDoc;
+  const docUpdate = userDoc;
   docUpdate.expectingStringInput = true;
   updateAuthUserDoc(userDoc.telegramId, docUpdate);
 }

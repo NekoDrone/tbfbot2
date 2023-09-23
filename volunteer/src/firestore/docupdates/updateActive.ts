@@ -5,15 +5,10 @@ import { firestoreCollection } from "../../exports/consts";
  * @param {number} userId - The Telegram user ID in numerical form.
  * @param {boolean} state - The Telegram message ID to write to the user's entry in the database.
  */
-export default async function updateActive(
-  userId: number,
-  state: boolean
-): Promise<void> {
-  const doc = (
-    await firestoreCollection.where("telegramid", "==", userId).get()
-  ).docs[0].ref;
-  const data = {
-    sessionMessageId: state,
-  };
-  doc.update(data);
+export default async function updateActive(userId: number, state: boolean): Promise<void> {
+    const doc = (await firestoreCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    const data = {
+        sessionMessageId: state,
+    };
+    doc.update(data);
 }

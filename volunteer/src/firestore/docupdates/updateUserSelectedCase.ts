@@ -5,14 +5,12 @@ import { firestoreCollection } from "../../exports/consts";
  * @param {string} caseKey - The case key as a string.
  */
 export default async function updateUserSelectedCase(
-  userId: number,
-  caseKey: string
+    userId: number,
+    caseKey: string,
 ): Promise<void> {
-  const doc = (
-    await firestoreCollection.where("telegramid", "==", userId).get()
-  ).docs[0].ref;
-  const data = {
-    selectedCase: caseKey,
-  };
-  doc.update(data);
+    const doc = (await firestoreCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    const data = {
+        selectedCase: caseKey,
+    };
+    doc.update(data);
 }

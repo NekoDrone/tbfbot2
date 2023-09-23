@@ -23,69 +23,70 @@ import escalateCase from "./caseMenu/caseStatus/escalateCase";
 const server = http.createServer();
 server.listen(); //TODO: Express and routing
 
-async function requestHandler(
-  req: type.TeleUpdate,
-  res: string
-): Promise<void> {
-  const userId = req.callback_query.from.id ?? req.message.from.id;
-  if (await authUserExists(userId)) {
-    const user = await getDocFromFirestore(userId);
-    if (updateIsQuery(req)) {
-      const queryData = req.callback_query.data as type.Query;
-      if (queryData == type.Query.PrintDetails) {
-        printCaseDetailsTo(user);
-      } else if (queryData == type.Query.PrintComments) {
-        printCaseCommentsTo(user);
-      } else if (queryData == type.Query.AddComment) {
-        startAddingComment(user);
-      } else if (queryData == type.Query.ChangeCaseStatus) {
-        startChangingCaseStatus(user);
-      } else if (queryData == type.Query.Back) {
-        botStart(user);
-      } else if (queryData == type.Query.Cancel) {
-        startCaseMenu(user);
-      } else if (queryData == type.Query.LogOut) {
-        logOut(user);
-      } else if (queryData == type.Query.Edit) {
-        clearUserInput(user);
-        startAddingComment(user);
-      } else if (queryData == type.Query.Confirm) {
-        finishAddingComment(user);
-      } else if (queryData == type.Query.Info) {
-        botInfo(user);
-      } else if (queryData == type.Query.EscalateCase) {
-        escalateCase(user);
-      } else if (queryData == type.Query.CloseCase) {
-        closeCase(user);
-      } else {
-        const issueId = queryData as string;
-        if (issueId.startsWith("TY-")) {
-          updateUserSelectedCase(user.telegramId, issueId);
-          startCaseMenu(user);
+async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> {
+    const userId = req.callback_query.from.id ?? req.message.from.id;
+    if (await authUserExists(userId)) {
+        const user = await getDocFromFirestore(userId);
+
+        if (updateIsQuery(req)) {
+            const queryData = req.callback_query.data as type.Query;
+
+            if (queryData == type.Query.PrintDetails) {
+                printCaseDetailsTo(user);
+            } else if (queryData == type.Query.PrintComments) {
+                printCaseCommentsTo(user);
+            } else if (queryData == type.Query.AddComment) {
+                startAddingComment(user);
+            } else if (queryData == type.Query.ChangeCaseStatus) {
+                startChangingCaseStatus(user);
+            } else if (queryData == type.Query.Back) {
+                botStart(user);
+            } else if (queryData == type.Query.Cancel) {
+                startCaseMenu(user);
+            } else if (queryData == type.Query.LogOut) {
+                logOut(user);
+            } else if (queryData == type.Query.Edit) {
+                clearUserInput(user);
+                startAddingComment(user);
+            } else if (queryData == type.Query.Confirm) {
+                finishAddingComment(user);
+            } else if (queryData == type.Query.Info) {
+                botInfo(user);
+            } else if (queryData == type.Query.EscalateCase) {
+                escalateCase(user);
+            } else if (queryData == type.Query.CloseCase) {
+                closeCase(user);
+            } else {
+                const issueId = queryData as string;
+                if (issueId.startsWith("TY-")) {
+                    updateUserSelectedCase(user.telegramId, issueId);
+                    startCaseMenu(user);
+                }
+            }
+
+            answerCallbackQuery(req.callback_query.id);
+        } else if (updateIsMessage(req)) {
+            const messageText = req.message.text;
+
+            if (messageText == "/start") {
+                botStart(user);
+            } else {
+                handleStringInput(messageText, user);
+                feedbackCommentToUser(messageText, user);
+            }
         }
-      }
-      answerCallbackQuery(req.callback_query.id);
-    } else if (updateIsMessage(req)) {
-      const messageText = req.message.text;
-      if (messageText == "/start") {
-        botStart(user);
-      } else {
-        handleStringInput(messageText, user);
-        feedbackCommentToUser(messageText, user);
-      }
+    } else {
+        sendMessageToUserId(
+            "You are not authorised. If you are a Befriender, please approach Sylfr or any other committee member for help.",
+            userId,
+        );
     }
-  } else {
-    sendMessageToUserId(
-      "You are not authorised. If you are a Befriender, please approach @SylfrTan or any other committee member for help.",
-      userId
-    );
-  }
 }
 
 function updateIsQuery(update: type.TeleUpdate): boolean {
-  return update.callback_query != undefined;
+    return update.callback_query != undefined;
 }
 
 function updateIsMessage(update: type.TeleUpdate): boolean {
-  return update.message != undefined;
+    return update.message != undefined;
 }
