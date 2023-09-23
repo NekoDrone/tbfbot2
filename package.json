@@ -1,25 +1,25 @@
 {
-  "dependencies": {
-    "@google-cloud/firestore": "^6.7.0",
-    "@google-cloud/functions-framework": "^3.3.0",
-    "axios": "^1.4.0",
-    "firestore-parser": "^0.9.0",
-    "protobufjs": "^7.2.4"
-  },
-  "devDependencies": {
-    "@types/node": "^20.4.4",
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
-    "eslint": "^8.49.0",
-    "eslint-config-prettier": "^9.0.0",
-    "prettier": "3.0.3",
-    "typescript": "^5.1.6"
-  },
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "functions-framework --target=newCaseHello",
-    "prestart": "npm run build",
-    "gcp-build": "npm run build"
-  }
+    "dependencies": {
+        "@google-cloud/firestore": "^6.7.0",
+        "@google-cloud/functions-framework": "^3.3.0",
+        "axios": "^1.4.0",
+        "firestore-parser": "^0.9.0",
+        "protobufjs": "^7.2.4"
+    },
+    "devDependencies": {
+        "@types/node": "^20.4.4",
+        "@typescript-eslint/eslint-plugin": "^6.7.0",
+        "@typescript-eslint/parser": "^6.7.0",
+        "eslint": "^8.49.0",
+        "eslint-config-prettier": "^9.0.0",
+        "prettier": "3.0.3",
+        "typescript": "^5.1.6"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "functions-framework --target=newCaseHello",
+        "prestart": "npm run build",
+        "gcp-build": "npm run build"
+    }
 }

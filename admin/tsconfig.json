@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "ES2022",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "strict": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "build",
+    "allowImportingTsExtensions": false,
+    "noImplicitAny": true
+  },
+  "include": ["src/**/*"]
+}

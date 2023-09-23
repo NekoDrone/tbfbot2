@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-        <mxGraphModel dx="851" dy="1377" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1278" dy="1771" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -417,9 +417,6 @@
                 <mxCell id="EKIsGKkMMV5qIhtIenaD-140" value="&lt;div style=&quot;color: rgb(204, 204, 204); font-family: Menlo, Monaco, &amp;quot;Courier New&amp;quot;, monospace;&quot;&gt;{&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;name: Sylfr&lt;/span&gt;&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;telegramId: 52763182&lt;/span&gt;&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;jiraLabel: Sylfr&lt;/span&gt;&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;active: false&lt;/span&gt;&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;expectingStringInput: false&lt;/span&gt;&lt;br style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;selectedCase: -&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(204, 204, 204); font-family: Menlo, Monaco, &amp;quot;Courier New&amp;quot;, monospace;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;sessionMessageId: number&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;color: rgb(204, 204, 204); font-family: Menlo, Monaco, &amp;quot;Courier New&amp;quot;, monospace;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="2520" y="-99" width="190" height="140" as="geometry"/>
                 </mxCell>
-                <mxCell id="EKIsGKkMMV5qIhtIenaD-141" value="{&lt;br&gt;name: Sylfr&lt;br&gt;telegramId: 52763182&lt;br&gt;jiraLabel: Sylfr&lt;br&gt;active: true&lt;br&gt;expectingStringInput: false&lt;br&gt;selectedCase: TY-001&lt;br&gt;&lt;div style=&quot;color: rgb(204, 204, 204); font-family: Menlo, Monaco, &amp;quot;Courier New&amp;quot;, monospace;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;sessionMessageId: number&lt;/span&gt;&lt;/div&gt;}" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
-                    <mxGeometry x="3220" y="207" width="190" height="140" as="geometry"/>
-                </mxCell>
                 <mxCell id="EKIsGKkMMV5qIhtIenaD-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="EKIsGKkMMV5qIhtIenaD-143" target="EKIsGKkMMV5qIhtIenaD-58" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
@@ -433,6 +430,21 @@
                 </mxCell>
                 <mxCell id="EKIsGKkMMV5qIhtIenaD-147" value="{&lt;br&gt;name: Sylfr&lt;br&gt;telegramId: 52763182&lt;br&gt;jiraLabel: Sylfr&lt;br&gt;active: true&lt;br&gt;expectingStringInput: true&lt;br&gt;selectedCase: TY-001&lt;br&gt;}" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" parent="1" vertex="1">
                     <mxGeometry x="3800" y="297" width="190" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="/start" style="shape=tape;whiteSpace=wrap;html=1;size=0.2;" vertex="1" parent="1">
+                    <mxGeometry x="2790" y="960" width="70" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Approve Closure" style="shape=tape;whiteSpace=wrap;html=1;size=0.2;" vertex="1" parent="1">
+                    <mxGeometry x="2950" y="1070" width="70" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="- List of befrienders and cases per befriender&lt;br&gt;- Escalation/Close flow change to prompt." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="2940" y="740" width="190" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="{&lt;br&gt;name: Sylfr&lt;br&gt;telegramId: 52763182&lt;br&gt;jiraLabel: Sylfr&lt;br&gt;active: true&lt;br&gt;expectingStringInput: false&lt;br&gt;selectedCase: TY-001&lt;br&gt;&lt;div style=&quot;color: rgb(204, 204, 204); font-family: Menlo, Monaco, &amp;quot;Courier New&amp;quot;, monospace;&quot;&gt;&lt;span style=&quot;color: rgb(240, 240, 240); font-family: Helvetica;&quot;&gt;sessionMessageId: number&lt;/span&gt;&lt;/div&gt;}" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="3220" y="207" width="190" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="/register" style="shape=tape;whiteSpace=wrap;html=1;size=0.2;" vertex="1" parent="1">
+                    <mxGeometry x="2895" width="70" height="40" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

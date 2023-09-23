@@ -1,4 +1,4 @@
-import * as http from "http";
+import express, { Response } from "express";
 import * as type from "./exports/types";
 import botStart from "./botStart";
 import authUserExists from "./firestore/authUserExists";
@@ -20,10 +20,11 @@ import startChangingCaseStatus from "./caseMenu/caseStatus/startChangingCaseStat
 import closeCase from "./caseMenu/caseStatus/closeCase";
 import escalateCase from "./caseMenu/caseStatus/escalateCase";
 
-const server = http.createServer();
-server.listen(); //TODO: Express and routing
+const app = express();
+app.post("/", (req, res) => requestHandler(req.body, res));
+app.listen(3000); //TODO: Express and routing
 
-async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> {
+async function requestHandler(req: type.TeleUpdate, res: Response): Promise<void> {
     const userId = req.callback_query.from.id ?? req.message.from.id;
     if (await authUserExists(userId)) {
         const user = await getDocFromFirestore(userId);
@@ -81,6 +82,7 @@ async function requestHandler(req: type.TeleUpdate, res: string): Promise<void> 
             userId,
         );
     }
+    res.sendStatus(200);
 }
 
 function updateIsQuery(update: type.TeleUpdate): boolean {
