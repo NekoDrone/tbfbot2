@@ -1,15 +1,17 @@
 {
-  "compilerOptions": {
-    "outDir": "build",
-    "target": "ES2022",
-    "module": "CommonJS",
-    "esModuleInterop": true,
-    "strict": true,
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    "declarationDir": "build",
-    "allowImportingTsExtensions": false,
-    "noImplicitAny": true
-  },
-  "include": ["src/**/*"]
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "strict": true,
+        "declarationDir": "build",
+        "allowImportingTsExtensions": false,
+        "noImplicitAny": true,
+        "outDir": "dist",
+        "target": "es2021",
+        "module": "CommonJS",
+        "strictNullChecks": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "isolatedModules": true
+    },
+    "include": ["src/**/*"]
 }
