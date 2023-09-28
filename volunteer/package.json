@@ -27,7 +27,6 @@
         "test": "jest",
         "build": "tsc && babel src -d dist --extensions .ts ",
         "start": "npm run build && node ./dist/index.js",
-        "prestart": "npm run build",
         "test-coverage": "jest --coverage"
     },
     "author": "",
