@@ -14,11 +14,11 @@ import finishAddingComment from "./telegram/userInput/finishAddingComment";
 import answerCallbackQuery from "./telegram/answerCallbackQuery";
 import clearUserInput from "./telegram/userInput/clearUserInput";
 import startCaseMenu from "./caseMenu/startCaseMenu";
-import sendMessageToUserId from "./telegram/sendMessageToUserId";
 import botInfo from "./caseMenu/botInfo";
 import startChangingCaseStatus from "./caseMenu/caseStatus/startChangingCaseStatus";
 import closeCase from "./caseMenu/caseStatus/closeCase";
 import escalateCase from "./caseMenu/caseStatus/escalateCase";
+import registerNewUser from "./registerNewUser";
 
 const app = express();
 app.post("/", (req, res) => requestHandler(req.body, res));
@@ -77,10 +77,8 @@ async function requestHandler(req: type.TeleUpdate, res: Response): Promise<void
             }
         }
     } else {
-        sendMessageToUserId(
-            "You are not authorised. If you are a Befriender, please approach Sylfr or any other committee member for help.",
-            userId,
-        );
+        const newUser = (await (await registerNewUser(req)).get()).data() as type.AuthUser;
+        botStart(newUser);
     }
     res.sendStatus(200);
 }

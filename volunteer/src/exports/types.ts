@@ -13,6 +13,7 @@ export type Message = {
 export type User = {
     id: number;
     username: string;
+    first_name: string;
 };
 
 export type CallbackQuery = {
