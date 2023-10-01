@@ -3,10 +3,12 @@ import * as firestore from "@google-cloud/firestore";
 //firestore
 const PROJ_ID = process.env.PROJ_ID;
 const AUTH_USERS_COLLECTION: string = process.env.AUTH_USERS_COLLECTION ?? "undefined";
+const CASE_STATUS_COLLECTION: string = process.env.CASE_STATUS_COLLECTION ?? "undefined";
 export const firestoreObject = new firestore.Firestore({
     projectId: PROJ_ID,
 });
-export const firestoreCollection = firestoreObject.collection(AUTH_USERS_COLLECTION);
+export const authUsersCollection = firestoreObject.collection(AUTH_USERS_COLLECTION);
+export const caseStatusCollection = firestoreObject.collection(CASE_STATUS_COLLECTION);
 
 //telegram
 export const TELEGRAM_URL = process.env.TELEGRAM_URL ?? "";

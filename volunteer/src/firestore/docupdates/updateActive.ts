@@ -1,4 +1,4 @@
-import { firestoreCollection } from "../../exports/consts";
+import { authUsersCollection } from "../../exports/consts";
 
 /**
  * Updates a user's document entry in the database with the given (in)active state.
@@ -6,7 +6,7 @@ import { firestoreCollection } from "../../exports/consts";
  * @param {boolean} state - The Telegram message ID to write to the user's entry in the database.
  */
 export default async function updateActive(userId: number, state: boolean): Promise<void> {
-    const doc = (await firestoreCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    const doc = (await authUsersCollection.where("telegramid", "==", userId).get()).docs[0].ref;
     const data = {
         sessionMessageId: state,
     };

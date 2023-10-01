@@ -98,3 +98,9 @@ export enum Query {
     EscalateCase = "Escalate Case",
     CloseCase = "Close Case",
 }
+
+export type CaseStatusChangeReq = {
+    caseLabel: string;
+    newStatus: JiraStatusId;
+    approved: boolean;
+};

@@ -1,4 +1,4 @@
-import { firestoreCollection } from "./exports/consts";
+import { authUsersCollection } from "./exports/consts";
 import { AuthUser, TeleUpdate } from "./exports/types";
 
 export default function registerNewUser(newUser: TeleUpdate) {
@@ -12,5 +12,5 @@ export default function registerNewUser(newUser: TeleUpdate) {
         expectingStringInput: false,
         inputString: "",
     };
-    return firestoreCollection.add(newUserDoc);
+    return authUsersCollection.add(newUserDoc);
 }

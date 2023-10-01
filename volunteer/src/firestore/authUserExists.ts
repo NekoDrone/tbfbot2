@@ -1,4 +1,4 @@
-import { firestoreCollection } from "../exports/consts";
+import { authUsersCollection } from "../exports/consts";
 
 /**
  * Checks if the user ID exists in Firestore as a valid ID.
@@ -6,6 +6,6 @@ import { firestoreCollection } from "../exports/consts";
  * @returns A promise containing a boolean (true if exists).
  */
 export default async function authUserExists(userId: number): Promise<boolean> {
-    const userDoc = await firestoreCollection.where("telegramid", "==", userId).get();
+    const userDoc = await authUsersCollection.where("telegramid", "==", userId).get();
     return !userDoc.empty;
 }

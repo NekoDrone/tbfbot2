@@ -1,4 +1,4 @@
-import { firestoreCollection } from "../../exports/consts";
+import { authUsersCollection } from "../../exports/consts";
 /**
  * Updates a user's document entry in the database with the selected case key.
  * @param {number} userId - The Telegram user ID in numerical form.
@@ -8,7 +8,7 @@ export default async function updateUserSelectedCase(
     userId: number,
     caseKey: string,
 ): Promise<void> {
-    const doc = (await firestoreCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    const doc = (await authUsersCollection.where("telegramid", "==", userId).get()).docs[0].ref;
     const data = {
         selectedCase: caseKey,
     };
