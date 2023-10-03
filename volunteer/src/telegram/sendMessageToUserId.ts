@@ -1,7 +1,7 @@
 import axios from "axios";
 import { TELEGRAM_URL } from "../exports/consts";
 import { TELEGRAM_BOT_KEY } from "../exports/consts";
-import updateSessionMessageId from "../firestore/docupdates/updateSessionMessageId";
+import { Message, TeleResponse } from "../exports/types";
 
 const telegramMethodUrl = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/sendMessage";
 
@@ -19,8 +19,10 @@ export default async function sendMessageToUserId(
         chat_id: userId,
         text: message,
     };
-    const confirmationResponse = await axios.post(telegramMethodUrl, options);
-    const messageId: number = confirmationResponse.data.message_id;
-    updateSessionMessageId(userId, messageId);
+    const responseData = (await axios.post(telegramMethodUrl, options))
+        .data as TeleResponse<Message>;
+    console.log(JSON.stringify(responseData));
+    const messageId: number = responseData.result.message_id;
+    console.log(`Successfully sent a message with id: ${messageId}`);
     return messageId;
 }

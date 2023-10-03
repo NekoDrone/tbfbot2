@@ -6,6 +6,7 @@ export type TeleUpdate = {
 };
 
 export type Message = {
+    message_id: number;
     from: User;
     text: string;
 };
@@ -21,6 +22,20 @@ export type CallbackQuery = {
     from: User;
     data: string;
     message: Message;
+};
+
+export type TeleResponse<T> = {
+    ok: boolean;
+    result: T;
+};
+
+export type InlineButton = {
+    text: string;
+    callback_data: string;
+};
+
+export type InlineMarkup = {
+    inline_keyboard: Array<InlineButton[]>;
 };
 
 //jira

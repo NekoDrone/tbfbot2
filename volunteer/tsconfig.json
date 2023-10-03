@@ -11,7 +11,7 @@
         "strictNullChecks": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "isolatedModules": true
+        "isolatedModules": false
     },
     "include": ["src/**/*"]
 }

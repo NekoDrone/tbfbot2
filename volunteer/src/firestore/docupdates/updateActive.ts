@@ -1,14 +1,14 @@
-import { authUsersCollection } from "../../exports/consts";
+import { AuthUser } from "../../exports/types";
+import updateAuthUserDoc from "./updateAuthUserDoc";
 
 /**
  * Updates a user's document entry in the database with the given (in)active state.
  * @param {number} userId - The Telegram user ID in numerical form.
  * @param {boolean} state - The Telegram message ID to write to the user's entry in the database.
  */
-export default async function updateActive(userId: number, state: boolean): Promise<void> {
-    const doc = (await authUsersCollection.where("telegramid", "==", userId).get()).docs[0].ref;
-    const data = {
-        sessionMessageId: state,
-    };
-    doc.update(data);
+export default async function updateActive(userDoc: AuthUser, state: boolean): Promise<void> {
+    const newDoc: AuthUser = userDoc;
+    newDoc.active = state;
+    console.log(`Attempting to update new document with pair "active: ${newDoc.active}"`);
+    updateAuthUserDoc(newDoc.telegramId, newDoc);
 }

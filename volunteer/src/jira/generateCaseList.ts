@@ -14,19 +14,24 @@ export default async function generateCaseList(jiraLabel: string): Promise<strin
 }
 
 async function retrieveCaseListFromJira(jiraLabel: string): Promise<JiraIssue[]> {
+    const auth = `Basic ${jiraCredentials}`;
+    console.log(`Attempting to pull case details from Jira using bearer token: ${auth}`);
     const header = {
-        Authorization: "Basic " + jiraCredentials,
+        Authorization: auth,
         Accept: "application/json",
         "Content-Type": "application/json",
     };
-    const jiraIssues: JiraIssue[] = await axios({
-        method: "GET",
-        url: JIRA_URL + "/search",
-        headers: header,
-        params: {
-            jql: `status = "Assigned Cases" and labels = ${jiraLabel}`,
-        },
-    });
+    const jiraIssues: JiraIssue[] = (
+        await axios({
+            method: "GET",
+            url: JIRA_URL + "/search",
+            headers: header,
+            params: {
+                jql: `status = "Assigned Cases" and labels = ${jiraLabel}`,
+            },
+        })
+    ).data.issues;
+    console.log(`Received issues: ${jiraIssues}`);
     return Promise.resolve(jiraIssues);
 }
 

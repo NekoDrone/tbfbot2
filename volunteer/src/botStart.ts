@@ -12,7 +12,7 @@ export default async function botStart(userDoc: AuthUser): Promise<void> {
     const botIsStartingMessage = "Befriending CMS Bot 2.0 Loading...";
     console.log("Starting new bot session!");
     const messageId = await sendMessageToUserId(botIsStartingMessage, userDoc.telegramId);
-    updateSessionMessageId(userDoc.telegramId, messageId);
+    updateSessionMessageId(userDoc, messageId);
     const casesList = await generateCaseList(userDoc.jiraLabel);
     const message = `Hello ${userDoc.name}! Please choose a case from the list below:`;
     editMessageWithInlineButtons(userDoc, casesList, message);

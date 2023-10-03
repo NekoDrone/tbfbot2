@@ -1,4 +1,5 @@
-import { authUsersCollection } from "../../exports/consts";
+import { AuthUser } from "../../exports/types";
+import updateAuthUserDoc from "./updateAuthUserDoc";
 
 /**
  * Updates a user's document entry in the database with the current active message ID.
@@ -6,12 +7,13 @@ import { authUsersCollection } from "../../exports/consts";
  * @param {number} messageId The Telegram message ID to write to the user's entry in the database.
  */
 export default async function updateSessionMessageId(
-    userId: number,
+    userDoc: AuthUser,
     messageId: number,
 ): Promise<void> {
-    const doc = (await authUsersCollection.where("telegramid", "==", userId).get()).docs[0].ref; //TODO: this will cause a TypeError if the user doesn't exist.
-    const data = {
-        sessionMessageId: messageId,
-    };
-    doc.update(data);
+    const newDoc: AuthUser = userDoc;
+    newDoc.sessionMessageId = messageId;
+    console.log(
+        `Attempting to update new document with pair "sessionMessageId: ${newDoc.sessionMessageId}"`,
+    );
+    updateAuthUserDoc(newDoc.telegramId, newDoc);
 }
