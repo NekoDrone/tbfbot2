@@ -1,4 +1,4 @@
-import express, { Response } from "express";
+import * as functions from "@google-cloud/functions-framework";
 import * as type from "./exports/types";
 import botStart from "./botStart";
 import authUserExists from "./firestore/authUserExists";
@@ -20,18 +20,20 @@ import closeCase from "./caseMenu/caseStatus/closeCase";
 import escalateCase from "./caseMenu/caseStatus/escalateCase";
 import registerNewUser from "./registerNewUser";
 
-const app = express();
-app.post("/", (req, res) => requestHandler(req.body, res));
-app.listen(3000); //TODO: Express and routing
-
-async function requestHandler(req: type.TeleUpdate, res: Response): Promise<void> {
-    const userId = req.callback_query.from.id ?? req.message.from.id;
+functions.http("volunteerBot", async (req, res) => {
+    const reqBody = req.body;
+    console.log("Request received. Processing.");
+    const updateType = reqBody.callback_query ?? reqBody.message;
+    const userId = updateType.from.id;
+    console.log(`Update received from ID: ${userId}`);
     if (await authUserExists(userId)) {
+        console.log("User exists! :D");
         const user = await getDocFromFirestore(userId);
-
-        if (updateIsQuery(req)) {
-            const queryData = req.callback_query.data as type.Query;
-
+        console.log(`User ${userId} exists.`);
+        if (updateIsQuery(reqBody)) {
+            console.log(`Update is Query. Extracting query data.`);
+            const queryData = reqBody.callback_query.data as type.Query;
+            console.log(`Query data found: ${queryData}`);
             if (queryData == type.Query.PrintDetails) {
                 printCaseDetailsTo(user);
             } else if (queryData == type.Query.PrintComments) {
@@ -64,24 +66,26 @@ async function requestHandler(req: type.TeleUpdate, res: Response): Promise<void
                     startCaseMenu(user);
                 }
             }
-
-            answerCallbackQuery(req.callback_query.id);
-        } else if (updateIsMessage(req)) {
-            const messageText = req.message.text;
-
+            answerCallbackQuery(reqBody.callback_query.id);
+        } else if (updateIsMessage(reqBody)) {
+            console.log(`Update is a message. Extracting message text.`);
+            const messageText = reqBody.message.text;
+            console.log(`Message text found: ${messageText}`);
             if (messageText == "/start") {
                 botStart(user);
             } else {
+                console.log("User doesn't exist :(");
+                console.log("Attempting to register new user");
                 handleStringInput(messageText, user);
                 feedbackCommentToUser(messageText, user);
             }
         }
     } else {
-        const newUser = (await (await registerNewUser(req)).get()).data() as type.AuthUser;
+        const newUser = (await (await registerNewUser(reqBody)).get()).data() as type.AuthUser;
         botStart(newUser);
     }
     res.sendStatus(200);
-}
+});
 
 function updateIsQuery(update: type.TeleUpdate): boolean {
     return update.callback_query != undefined;

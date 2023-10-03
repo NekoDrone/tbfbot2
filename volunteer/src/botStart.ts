@@ -10,6 +10,7 @@ import updateSessionMessageId from "./firestore/docupdates/updateSessionMessageI
  */
 export default async function botStart(userDoc: AuthUser): Promise<void> {
     const botIsStartingMessage = "Befriending CMS Bot 2.0 Loading...";
+    console.log("Starting new bot session!");
     const messageId = await sendMessageToUserId(botIsStartingMessage, userDoc.telegramId);
     updateSessionMessageId(userDoc.telegramId, messageId);
     const casesList = await generateCaseList(userDoc.jiraLabel);

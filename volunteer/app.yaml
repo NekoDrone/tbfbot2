@@ -5,7 +5,7 @@ env_variables:
   PROJ_ID: "tbfcms2"
   AUTH_USERS_COLLECTION: "cms-authusers"
   TELEGRAM_URL: "https://api.telegram.org/bot"
-  TELEGRAM_BOT_KEY: "1639806974:AAGel8bn_uQ9Ja4jNxBcrlDM-vrlw3Auavo"
+  TELEGRAM_BOT_KEY: "6549614794:AAEA7Dcp1pBYs4TRtmWezZtWitaolxF08v4"
   JIRA_URL: "https://transbefrienders.atlassian.net/rest/api/3/issue"
   JIRA_KEY: "jMM6wHQLBXH3MX61LT1v11A0"
   JIRA_EMAIL: "transbefrienders@gmail.com"
