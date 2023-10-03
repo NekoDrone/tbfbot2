@@ -62,7 +62,7 @@ functions.http("volunteerBot", async (req, res) => {
             } else {
                 const issueId = queryData as string;
                 if (issueId.startsWith("TY-")) {
-                    updateUserSelectedCase(user.telegramId, issueId);
+                    updateUserSelectedCase(user, issueId);
                     startCaseMenu(user);
                 }
             }

@@ -2,8 +2,8 @@ import { AuthUser } from "../../exports/types";
 import updateAuthUserDoc from "./updateAuthUserDoc";
 /**
  * Updates a user's document entry in the database with the selected case key.
- * @param {number} userId - The Telegram user ID in numerical form.
- * @param {string} caseKey - The case key as a string.
+ * @param {AuthUser} userDoc - The full document entry to update.
+ * @param {string} caseKey - The case key as a string to write to the user's entry in the database
  */
 export default async function updateUserSelectedCase(
     userDoc: AuthUser,
