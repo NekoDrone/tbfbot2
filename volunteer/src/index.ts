@@ -43,7 +43,7 @@ functions.http("volunteerBot", async (req, res) => {
             } else if (queryData == type.Query.ChangeCaseStatus) {
                 startChangingCaseStatus(user);
             } else if (queryData == type.Query.Back) {
-                botStart(user);
+                botStart(user); //TODO: Don't do this. This creates a new instance with a new message. You need to go back without starting a new instance.
             } else if (queryData == type.Query.Cancel) {
                 startCaseMenu(user);
             } else if (queryData == type.Query.LogOut) {
@@ -81,6 +81,7 @@ functions.http("volunteerBot", async (req, res) => {
             }
         }
     } else {
+        console.log("User doesn't exist :(");
         const newUser = (await (await registerNewUser(reqBody)).get()).data() as type.AuthUser;
         botStart(newUser);
     }

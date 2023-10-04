@@ -9,6 +9,7 @@ import * as type from "../exports/types";
  */
 export default async function printCaseDetailsTo(userDoc: AuthUser): Promise<void> {
     const jiraIssue = await getJiraIssue(userDoc.selectedCase);
+    console.log(`Issue received: ${JSON.stringify(jiraIssue.fields.description)}`);
     const buttons = [type.Query.Back];
     const issueDesc = jiraIssue.fields.description.content[0].content[0].text;
     editMessageWithInlineButtons(userDoc, buttons, issueDesc);

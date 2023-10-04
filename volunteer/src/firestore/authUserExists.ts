@@ -6,6 +6,6 @@ import { authUsersCollection } from "../exports/consts";
  * @returns A promise containing a boolean (true if exists).
  */
 export default async function authUserExists(userId: number): Promise<boolean> {
-    const userDoc = await authUsersCollection.where("telegramid", "==", userId).get();
+    const userDoc = await authUsersCollection.where("telegramId", "==", userId).get();
     return !userDoc.empty;
 }

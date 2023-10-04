@@ -7,8 +7,10 @@ import { AuthUser } from "../exports/types";
  * @param userDoc - An object of type AuthUser that contains both the comment, and the case label it should apply to.
  */
 export async function addCommentToCase(userDoc: AuthUser): Promise<void> {
+    const auth = `Basic ${jiraCredentials}`;
+    console.log(`Attempting to pull case details from Jira using bearer token: ${auth}`);
     const header = {
-        Authorization: "Basic " + jiraCredentials,
+        Authorization: auth,
         Accept: "application/json",
         "Content-Type": "application/json",
     };

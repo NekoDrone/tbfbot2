@@ -31,11 +31,20 @@ export default function editMessageWithInlineButtons(
 function buildKeyboardButtons(buttonLabels: string[]): InlineMarkup {
     const keyboardButtons = new Array<InlineButton[]>();
     for (let i = 0; i < buttonLabels.length; i++) {
-        for (let j = 0; j < 1; j++) {
-            const button: InlineButton = { text: buttonLabels[i], callback_data: buttonLabels[i] };
-            keyboardButtons[i][j] = button;
-            i++;
+        const button1: InlineButton = { text: buttonLabels[i], callback_data: buttonLabels[i] };
+        const button2: InlineButton = { text: "", callback_data: "" };
+        i++;
+        if (i < buttonLabels.length) {
+            button2.text = buttonLabels[i];
+            button2.callback_data = buttonLabels[i];
         }
+        let tempButtons: InlineButton[] = [];
+        if (button2.text == "" && button2.callback_data == "") {
+            tempButtons = [button1];
+        } else {
+            tempButtons = [button1, button2];
+        }
+        keyboardButtons.push(tempButtons);
     }
     const markup: InlineMarkup = {
         inline_keyboard: keyboardButtons,

@@ -11,5 +11,6 @@ export default function answerCallbackQuery(queryId: string): void {
     const options = {
         callback_query_id: queryId,
     };
+    console.log(`Callback query answered! Query ID was ${queryId}`);
     axios.post(telegramMethodUrl, options);
 }

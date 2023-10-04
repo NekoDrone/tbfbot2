@@ -7,6 +7,6 @@ import { AuthUser } from "../../exports/types";
  * @param {AuthUser} userDoc - The updated document entry.
  */
 export default async function updateAuthUserDoc(userId: number, userDoc: AuthUser): Promise<void> {
-    const doc = (await authUsersCollection.where("telegramid", "==", userId).get()).docs[0].ref;
+    const doc = (await authUsersCollection.where("telegramId", "==", userId).get()).docs[0].ref;
     doc.update(userDoc);
 }

@@ -31,7 +31,7 @@ async function retrieveCaseListFromJira(jiraLabel: string): Promise<JiraIssue[]>
             },
         })
     ).data.issues;
-    console.log(`Received issues: ${jiraIssues}`);
+    console.log(`Received issues: ${JSON.stringify(jiraIssues)}`);
     return Promise.resolve(jiraIssues);
 }
 
@@ -40,5 +40,6 @@ function generateLabelsFromArray(issuesArray: JiraIssue[]): string[] {
     for (const issue of issuesArray) {
         caseLabels.push(issue.key);
     }
+    console.log(JSON.stringify(caseLabels));
     return caseLabels;
 }

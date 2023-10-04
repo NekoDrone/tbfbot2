@@ -9,15 +9,19 @@ import { JiraIssue } from "../exports/types";
  */
 
 export default async function getJiraIssue(issueKey: string): Promise<JiraIssue> {
+    const auth = `Basic ${jiraCredentials}`;
+    console.log(`Attempting to pull case details from Jira using bearer token: ${auth}`);
     const header = {
-        Authorization: "Basic " + jiraCredentials,
+        Authorization: auth,
         Accept: "application/json",
         "Content-Type": "application/json",
     };
-    const issue: JiraIssue = await axios({
-        method: "GET",
-        url: JIRA_URL + `/${issueKey}`,
-        headers: header,
-    });
+    const issue: JiraIssue = (
+        await axios({
+            method: "GET",
+            url: JIRA_URL + `/issue/${issueKey}`,
+            headers: header,
+        })
+    ).data;
     return Promise.resolve(issue);
 }
