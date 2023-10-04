@@ -85,18 +85,7 @@ export type AuthUser = {
 };
 
 export enum Query {
-    PrintDetails = "Print Details",
-    PrintComments = "Print Comments",
-    AddComment = "Add Comment",
-    ChangeCaseStatus = "Change Case Status",
-    LogOut = "Log Out",
-    Back = "Back",
-    Cancel = "Cancel",
-    Edit = "Edit",
-    Confirm = "Confirm",
-    Info = "Info",
-    EscalateCase = "Escalate Case",
-    CloseCase = "Close Case",
+    
 }
 
 export type CaseStatusChangeReq = {

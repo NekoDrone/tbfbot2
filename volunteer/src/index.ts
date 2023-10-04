@@ -19,6 +19,7 @@ import startChangingCaseStatus from "./caseMenu/caseStatus/startChangingCaseStat
 import closeCase from "./caseMenu/caseStatus/closeCase";
 import escalateCase from "./caseMenu/caseStatus/escalateCase";
 import registerNewUser from "./registerNewUser";
+import backToStart from "./backToStart";
 
 functions.http("volunteerBot", async (req, res) => {
     const reqBody = req.body;
@@ -43,7 +44,7 @@ functions.http("volunteerBot", async (req, res) => {
             } else if (queryData == type.Query.ChangeCaseStatus) {
                 startChangingCaseStatus(user);
             } else if (queryData == type.Query.Back) {
-                botStart(user); //TODO: Don't do this. This creates a new instance with a new message. You need to go back without starting a new instance.
+                backToStart(user);
             } else if (queryData == type.Query.Cancel) {
                 startCaseMenu(user);
             } else if (queryData == type.Query.LogOut) {

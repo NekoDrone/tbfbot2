@@ -1,6 +1,8 @@
 import axios from "axios";
 import { TELEGRAM_URL } from "../exports/consts";
 import { TELEGRAM_BOT_KEY } from "../exports/consts";
+import adminUserExists from "../firestore/adminUserExists";
+import updateSessionMessageId from "../firestore/docupdates/updateSessionMessageId";
 
 const telegramMethodUrl = TELEGRAM_URL + TELEGRAM_BOT_KEY + "/sendMessage";
 
@@ -20,5 +22,8 @@ export default async function sendMessageToUserId(
     };
     const confirmationResponse = await axios.post(telegramMethodUrl, options);
     const messageId: number = confirmationResponse.data.message_id;
+    if(await adminUserExists(userId)) {
+        updateSessionMessageId(userId, messageId);
+    }
     return messageId;
 }
